@@ -1,0 +1,10 @@
+Document ID: KB-07
+Title: Guest Wi-Fi Access
+Category: Network / Wireless
+Last Updated: Q3 2026
+
+Content:
+Guest Wi-Fi credentials are valid for 24 hours.
+Any employee can generate guest Wi-Fi credentials from the front-desk kiosk.
+No IT ticket required.
+

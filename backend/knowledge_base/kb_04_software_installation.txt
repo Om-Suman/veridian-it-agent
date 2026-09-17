@@ -1,0 +1,10 @@
+Document ID: KB-04
+Title: Software Installation
+Category: Software & Applications
+Last Updated: Q3 2026
+
+Content:
+Standard software listed in the approved catalog can be self-installed.
+Non-catalog software requires IT Security review.
+Security review takes 3–5 business days.
+

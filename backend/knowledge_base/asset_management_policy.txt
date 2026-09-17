@@ -1,0 +1,12 @@
+Document ID: Asset Management Policy
+Title: Asset Management Policy Extract
+Category: Hardware & Assets / Lifecycle
+Issued by: Finance & Assets
+Last updated: Q2 2026
+
+Content:
+All company-issued hardware, including laptops and monitors, follows a standard 4-year refresh cycle from date of issue.
+Early replacement outside this cycle requires:
+- Finance sign-off
+- IT approval
+

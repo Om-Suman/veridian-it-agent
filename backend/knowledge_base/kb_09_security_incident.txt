@@ -1,0 +1,9 @@
+Document ID: KB-09
+Title: Security Incident Reporting
+Category: Security / Incident Response
+Last Updated: Q3 2026
+
+Content:
+Any suspected phishing email, malware, or unauthorized access attempt must be reported to security@veridian-corp.example immediately.
+The suspected security email/message should not be forwarded to other employees.
+

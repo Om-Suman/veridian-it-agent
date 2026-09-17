@@ -1,0 +1,107 @@
+[
+  {
+    "id": "EMP-001",
+    "name": "Aditi Sharma",
+    "email": "aditi.sharma@veridian-corp.example",
+    "department": "Engineering",
+    "role": "Software Engineer"
+  },
+  {
+    "id": "EMP-002",
+    "name": "Vikram Chawla",
+    "email": "vikram.chawla@veridian-corp.example",
+    "department": "Marketing",
+    "role": "Marketing Lead"
+  },
+  {
+    "id": "EMP-003",
+    "name": "Karan Mehta",
+    "email": "karan.mehta@veridian-corp.example",
+    "department": "Sales",
+    "role": "Account Executive"
+  },
+  {
+    "id": "EMP-004",
+    "name": "Ritu Bhatia",
+    "email": "ritu.bhatia@veridian-corp.example",
+    "department": "Data Analytics",
+    "role": "Data Analyst"
+  },
+  {
+    "id": "EMP-005",
+    "name": "Sanjay Oberoi",
+    "email": "sanjay.oberoi@veridian-corp.example",
+    "department": "Operations",
+    "role": "Operations Manager"
+  },
+  {
+    "id": "EMP-006",
+    "name": "Meera Iyer",
+    "email": "meera.iyer@veridian-corp.example",
+    "department": "Human Resources",
+    "role": "HR Specialist"
+  },
+  {
+    "id": "EMP-007",
+    "name": "Farhan Ali",
+    "email": "farhan.ali@veridian-corp.example",
+    "department": "Product",
+    "role": "Product Manager"
+  },
+  {
+    "id": "EMP-008",
+    "name": "Ananya Reddy",
+    "email": "ananya.reddy@veridian-corp.example",
+    "department": "Finance",
+    "role": "Financial Analyst"
+  },
+  {
+    "id": "EMP-009",
+    "name": "Rohit Desai",
+    "email": "rohit.desai@veridian-corp.example",
+    "department": "Legal",
+    "role": "Legal Counsel"
+  },
+  {
+    "id": "EMP-010",
+    "name": "Kavya Pillai",
+    "email": "kavya.pillai@veridian-corp.example",
+    "department": "Finance",
+    "role": "Senior Accountant"
+  },
+  {
+    "id": "EMP-011",
+    "name": "Nikhil Bansal",
+    "email": "nikhil.bansal@veridian-corp.example",
+    "department": "Engineering",
+    "role": "Engineering Director"
+  },
+  {
+    "id": "EMP-012",
+    "name": "Sneha Kulkarni",
+    "email": "sneha.kulkarni@veridian-corp.example",
+    "department": "Customer Support",
+    "role": "Support Manager"
+  },
+  {
+    "id": "EMP-013",
+    "name": "Aman Gupta",
+    "email": "aman.gupta@veridian-corp.example",
+    "department": "Design",
+    "role": "UX Designer"
+  },
+  {
+    "id": "EMP-014",
+    "name": "Tanya Chopra",
+    "email": "tanya.chopra@veridian-corp.example",
+    "department": "Operations",
+    "role": "Project Coordinator"
+  },
+  {
+    "id": "EMP-015",
+    "name": "Rahul Menon",
+    "email": "rahul.menon@veridian-corp.example",
+    "department": "Sales",
+    "role": "Sales Representative"
+  }
+]
