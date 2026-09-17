@@ -37,3 +37,9 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Project Specification files
+PROJECT_SPEC.md
+projectSpec.md
+projectspec.md
+
+
