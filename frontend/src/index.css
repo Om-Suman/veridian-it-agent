@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-canvas: #fffefb;
+  --color-canvas-soft: #f8f4f0;
+  --color-canvas-hover: #f1ece5;
+  --color-ink: #201515;
+  --color-ink-soft: #2f2a26;
+  --color-body: #605d52;
+  --color-body-mid: #939084;
+  --color-mute: #c5c0b1;
+  --color-hairline: #e8e2d9;
+  --color-hairline-dark: #d5cdbf;
+  --color-primary: #ff4f00;
+  --color-primary-hover: #e04600;
+}
+
 :root {
   font-family:
     "Inter",
@@ -12,13 +27,15 @@
     Ubuntu,
     Cantarell,
     sans-serif;
+  background-color: #fffefb;
+  color: #201515;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: #fffefb;
+  color: #201515;
 }
 
 /* Custom Scrollbar */
@@ -28,14 +45,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: #fffefb;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.8);
-  border-radius: 9999px;
+  background: #c5c0b1;
+  border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 1);
+  background: #939084;
 }

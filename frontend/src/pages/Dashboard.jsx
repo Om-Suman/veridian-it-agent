@@ -9,8 +9,6 @@ import {
   AlertTriangle,
   ArrowRight,
   Sparkles,
-  Layers,
-  Terminal,
 } from "lucide-react";
 
 export default function Dashboard({
@@ -35,25 +33,25 @@ export default function Dashboard({
     switch (decision) {
       case "RESOLVE":
         return (
-          <span className="bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono px-2 py-0.5 rounded font-semibold">
+          <span className="bg-[#ebf6ed] border border-[#b8e2c0] text-[#1c6434] text-[10px] font-mono px-2 py-0.5 rounded-lg font-semibold">
             RESOLVE
           </span>
         );
       case "FOLLOW_UP":
         return (
-          <span className="bg-amber-950/60 border border-amber-500/40 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded font-semibold">
+          <span className="bg-[#fef8e7] border border-[#fae2a0] text-[#935f08] text-[10px] font-mono px-2 py-0.5 rounded-lg font-semibold">
             FOLLOW_UP
           </span>
         );
       case "ESCALATE":
         return (
-          <span className="bg-rose-950/60 border border-rose-500/40 text-rose-400 text-[10px] font-mono px-2 py-0.5 rounded font-semibold">
+          <span className="bg-[#fdf0ed] border border-[#f5c2b9] text-[#b92510] text-[10px] font-mono px-2 py-0.5 rounded-lg font-semibold">
             ESCALATE
           </span>
         );
       default:
         return (
-          <span className="bg-slate-800 text-slate-300 text-[10px] font-mono px-2 py-0.5 rounded">
+          <span className="bg-canvas-soft border border-hairline text-ink-soft text-[10px] font-mono px-2 py-0.5 rounded-lg">
             {decision}
           </span>
         );
@@ -63,32 +61,32 @@ export default function Dashboard({
   return (
     <div className="space-y-8">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-blue-900/40 via-slate-900 to-slate-900 border border-blue-500/20 rounded-2xl p-6 shadow-xl">
+      <div className="bg-canvas-soft border border-hairline rounded-xl p-6 sm:p-8 shadow-2xs">
         <div className="max-w-3xl">
-          <div className="flex items-center space-x-2 text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">
+          <div className="flex items-center space-x-2 text-xs font-semibold text-primary uppercase tracking-wider mb-2">
             <Shield className="h-4 w-4" />
             <span>Autonomous Service Desk</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-medium text-ink tracking-tight">
             Veridian Corp Internal IT Service Agent
           </h1>
-          <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+          <p className="text-sm text-body mt-2.5 leading-relaxed">
             Enterprise support system governed by deterministic policy
             enforcement and FAISS-based RAG retrieval. Operating with strict
             adherence to authoritative Veridian Corp policies without
             hallucinating approvals.
           </p>
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <button
               onClick={() => onNavigate("chat")}
-              className="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg text-sm flex items-center space-x-2 transition-colors shadow-lg shadow-blue-600/20 cursor-pointer"
+              className="bg-primary hover:bg-primary-hover text-[#fffefb] font-medium px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 transition-colors shadow-2xs cursor-pointer"
             >
               <span>Open AI Service Agent</span>
               <ArrowRight className="h-4 w-4" />
             </button>
             <button
               onClick={() => onNavigate("tickets")}
-              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium px-4 py-2 rounded-lg text-sm transition-colors cursor-pointer"
+              className="bg-canvas hover:bg-canvas-hover border border-hairline text-ink font-medium px-4 py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
             >
               <span>View Ticket Queue ({tickets.length})</span>
             </button>
@@ -98,68 +96,68 @@ export default function Dashboard({
 
       {/* Metrics Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-body text-xs mb-2">
             <span>Active Open Tickets</span>
-            <Ticket className="h-4 w-4 text-blue-400" />
+            <Ticket className="h-4 w-4 text-primary" />
           </div>
-          <div className="text-2xl font-bold text-white font-mono">
+          <div className="text-2xl font-bold text-ink font-mono">
             {openCount}
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-body-mid mt-1">
             Pending action or review
           </p>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-body text-xs mb-2">
             <span>Escalated Cases</span>
-            <AlertCircle className="h-4 w-4 text-rose-400" />
+            <AlertCircle className="h-4 w-4 text-[#b92510]" />
           </div>
-          <div className="text-2xl font-bold text-rose-400 font-mono">
+          <div className="text-2xl font-bold text-[#b92510] font-mono">
             {escalatedCount}
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-body-mid mt-1">
             Security / Finance / Human IT
           </p>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-body text-xs mb-2">
             <span>Resolved Tickets</span>
-            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+            <CheckCircle2 className="h-4 w-4 text-[#1c6434]" />
           </div>
-          <div className="text-2xl font-bold text-emerald-400 font-mono">
+          <div className="text-2xl font-bold text-[#1c6434] font-mono">
             {resolvedCount}
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-body-mid mt-1">
             Closed per verified policy
           </p>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
+          <div className="flex items-center justify-between text-body text-xs mb-2">
             <span>Active Policy Documents</span>
-            <BookOpen className="h-4 w-4 text-cyan-400" />
+            <BookOpen className="h-4 w-4 text-primary" />
           </div>
-          <div className="text-2xl font-bold text-cyan-400 font-mono">
+          <div className="text-2xl font-bold text-ink font-mono">
             {policies.length || 11}
           </div>
-          <p className="text-[11px] text-slate-500 mt-1">
+          <p className="text-[11px] text-body-mid mt-1">
             KB-01 to KB-10 + Asset Policy
           </p>
         </div>
       </div>
 
       {/* Authoritative Demo Test Scenarios Section (REQ-01 through REQ-15) */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
+      <div className="bg-canvas-soft border border-hairline rounded-xl p-6 shadow-2xs">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center space-x-2">
-              <Sparkles className="h-5 w-5 text-blue-400" />
+            <h2 className="text-base font-semibold text-ink flex items-center space-x-2">
+              <Sparkles className="h-4 w-4 text-primary" />
               <span>Specification Employee Requests (REQ-01 to REQ-15)</span>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-body mt-0.5">
               Click any scenario to test deterministic policy routing, FAISS
               source attribution, and ticket creation.
             </p>
@@ -171,33 +169,33 @@ export default function Dashboard({
             <div
               key={req.request_id}
               onClick={() => onRunDemo && onRunDemo(req)}
-              className="bg-slate-850 hover:bg-slate-800 border border-slate-800 hover:border-blue-500/40 rounded-xl p-4 transition-all duration-150 cursor-pointer group flex flex-col justify-between shadow-sm"
+              className="bg-canvas hover:bg-canvas-hover border border-hairline hover:border-primary rounded-xl p-4 transition-all duration-150 cursor-pointer group flex flex-col justify-between shadow-2xs"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono font-bold text-blue-400 text-xs bg-blue-950 px-2 py-0.5 rounded border border-blue-500/30">
+                  <span className="font-mono font-bold text-primary text-xs bg-canvas-soft px-2 py-0.5 rounded-lg border border-hairline">
                     {req.request_id}
                   </span>
                   {getDecisionBadge(req.expected_decision)}
                 </div>
 
-                <h3 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors">
+                <h3 className="text-sm font-semibold text-ink group-hover:text-primary transition-colors">
                   {req.employee_name}
                 </h3>
-                <p className="text-xs text-slate-400 mb-2">{req.category}</p>
+                <p className="text-xs text-body-mid mb-2">{req.category}</p>
 
-                <p className="text-xs text-slate-300 italic line-clamp-2 bg-slate-900/60 p-2 rounded border border-slate-800/80 mb-2">
+                <p className="text-xs text-body italic line-clamp-2 bg-canvas-soft p-2.5 rounded-xl border border-hairline mb-2">
                   "{req.request_text}"
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
-                <span className="truncate max-w-[170px] text-cyan-400 font-mono">
+              <div className="pt-2 border-t border-hairline flex items-center justify-between text-[11px] text-body">
+                <span className="truncate max-w-[170px] text-body-mid font-mono">
                   {req.relevant_policies.length > 0
                     ? req.relevant_policies.join(", ")
                     : "No Policy (Human)"}
                 </span>
-                <span className="text-blue-400 font-medium group-hover:translate-x-0.5 transition-transform flex items-center space-x-1">
+                <span className="text-primary font-medium group-hover:translate-x-0.5 transition-transform flex items-center space-x-1">
                   <span>Test Run</span>
                   <ArrowRight className="h-3 w-3" />
                 </span>

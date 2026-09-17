@@ -8,10 +8,7 @@ import {
   BookOpen,
   Activity,
   Ticket,
-  Info,
   ChevronRight,
-  ShieldAlert,
-  HelpCircle,
 } from "lucide-react";
 
 export default function ChatWindow({
@@ -149,29 +146,30 @@ export default function ChatWindow({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-7rem)]">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-7.5rem)]">
       {/* Main Chat Column (2 spans) */}
-      <div className="lg:col-span-2 flex flex-col bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+      <div className="lg:col-span-2 flex flex-col bg-canvas-soft border border-hairline rounded-xl overflow-hidden shadow-2xs">
         {/* Quick Demo Scenarios Bar */}
-        <div className="bg-slate-850 border-b border-slate-800 p-2.5 overflow-x-auto flex items-center space-x-2 text-xs">
-          <span className="text-slate-400 font-semibold flex items-center space-x-1 shrink-0">
-            <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+        <div className="bg-canvas border-b border-hairline p-2.5 overflow-x-auto flex items-center space-x-2 text-xs">
+          <span className="text-body font-medium flex items-center space-x-1 shrink-0">
+            <Sparkles className="h-3.5 w-3.5 text-primary" />
             <span>Test Scenarios:</span>
           </span>
           {requests.slice(0, 7).map((req) => (
             <button
               key={req.request_id}
               onClick={() => loadPreset(req)}
-              className="bg-slate-800 hover:bg-blue-900/60 border border-slate-700 hover:border-blue-500/50 text-slate-300 hover:text-white px-2.5 py-1 rounded-md text-[11px] font-mono whitespace-nowrap transition-colors cursor-pointer"
+              className="bg-canvas-soft hover:bg-canvas-hover border border-hairline hover:border-primary text-ink-soft hover:text-ink px-2.5 py-1 rounded-xl text-[11px] font-mono whitespace-nowrap transition-colors cursor-pointer"
               title={`${req.employee_name}: ${req.request_text}`}
             >
-              <strong>{req.request_id}</strong>: {req.category.split("/")[0]}
+              <strong className="text-primary">{req.request_id}</strong>:{" "}
+              {req.category.split("/")[0]}
             </button>
           ))}
         </div>
 
         {/* Message Thread */}
-        <div className="flex-1 p-4 overflow-y-auto space-y-2">
+        <div className="flex-1 p-4 overflow-y-auto space-y-2 bg-canvas">
           {messages.map((msg) => (
             <Message
               key={msg.id}
@@ -181,8 +179,8 @@ export default function ChatWindow({
             />
           ))}
           {loading && (
-            <div className="flex items-center space-x-3 text-xs text-blue-400 p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 max-w-md animate-pulse">
-              <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+            <div className="flex items-center space-x-3 text-xs text-body p-3.5 bg-canvas-soft rounded-xl border border-hairline max-w-md animate-pulse">
+              <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
               <span>
                 Agent orchestrating: NLU Entity Extraction → FAISS RAG Retrieval
                 → Policy Engine...
@@ -204,16 +202,16 @@ export default function ChatWindow({
       </div>
 
       {/* Right Column: Context, Policy Citations & Live Audit */}
-      <div className="flex flex-col space-y-6 overflow-y-auto">
+      <div className="flex flex-col space-y-5 overflow-y-auto">
         {/* Active Ticket Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
-              <Ticket className="h-4 w-4 text-blue-400" />
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-body flex items-center space-x-1.5">
+              <Ticket className="h-4 w-4 text-primary" />
               <span>Active Ticket Context</span>
             </h3>
             {activeTicket && (
-              <span className="text-[11px] font-mono bg-blue-950 text-blue-400 px-2 py-0.5 rounded border border-blue-500/30">
+              <span className="text-[11px] font-mono bg-canvas text-primary px-2 py-0.5 rounded-lg border border-hairline font-semibold">
                 {activeTicket.ticket_id}
               </span>
             )}
@@ -221,21 +219,21 @@ export default function ChatWindow({
 
           {activeTicket ? (
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-500">Status:</span>
-                <span className="font-mono font-semibold text-slate-200">
+              <div className="flex justify-between py-1 border-b border-hairline">
+                <span className="text-body-mid">Status:</span>
+                <span className="font-mono font-semibold text-ink">
                   {activeTicket.status}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-500">Decision:</span>
-                <span className="font-mono font-semibold text-blue-400">
+              <div className="flex justify-between py-1 border-b border-hairline">
+                <span className="text-body-mid">Decision:</span>
+                <span className="font-mono font-semibold text-primary">
                   {activeTicket.decision}
                 </span>
               </div>
               <div className="flex justify-between py-1">
-                <span className="text-slate-500">Assigned Team:</span>
-                <span className="font-mono text-slate-200">
+                <span className="text-body-mid">Assigned Team:</span>
+                <span className="font-mono text-ink">
                   {activeTicket.assigned_team || "IT"}
                 </span>
               </div>
@@ -243,13 +241,13 @@ export default function ChatWindow({
                 onClick={() =>
                   onSelectTicket && onSelectTicket(activeTicket.ticket_id)
                 }
-                className="w-full mt-2 py-1.5 bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-200 rounded text-xs font-medium transition-colors"
+                className="w-full mt-2.5 py-2 bg-canvas hover:bg-canvas-hover border border-hairline text-ink rounded-xl text-xs font-medium transition-colors cursor-pointer"
               >
                 Inspect Ticket Record
               </button>
             </div>
           ) : (
-            <p className="text-xs text-slate-500 italic py-2">
+            <p className="text-xs text-body-mid italic py-2">
               No active ticket in current session. Submit an issue to create or
               route a ticket.
             </p>
@@ -257,34 +255,34 @@ export default function ChatWindow({
         </div>
 
         {/* Retrieved Policy Evidence Panel */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center space-x-1.5">
-            <BookOpen className="h-4 w-4 text-cyan-400" />
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-body mb-3 flex items-center space-x-1.5">
+            <BookOpen className="h-4 w-4 text-primary" />
             <span>Retrieved Policy Evidence</span>
           </h3>
           {activeSources.length > 0 ? (
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {activeSources.map((src, i) => (
                 <div
                   key={i}
                   onClick={() => onSelectSource && onSelectSource(src)}
-                  className="bg-slate-850 hover:bg-slate-800 border border-slate-700/80 rounded-lg p-3 text-xs cursor-pointer transition-colors group"
+                  className="bg-canvas hover:bg-canvas-hover border border-hairline hover:border-primary rounded-xl p-3 text-xs cursor-pointer transition-colors group shadow-2xs"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono font-bold text-cyan-400 group-hover:text-cyan-300">
+                    <span className="font-mono font-bold text-primary">
                       {src.id}
                     </span>
-                    <ChevronRight className="h-3.5 w-3.5 text-slate-500 group-hover:text-slate-300" />
+                    <ChevronRight className="h-3.5 w-3.5 text-body-mid group-hover:text-ink" />
                   </div>
-                  <p className="font-medium text-slate-200 mb-1">{src.title}</p>
-                  <p className="text-slate-400 line-clamp-2 text-[11px]">
+                  <p className="font-medium text-ink mb-1">{src.title}</p>
+                  <p className="text-body-mid line-clamp-2 text-[11px]">
                     {src.content}
                   </p>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-xs text-slate-500 italic py-2">
+            <p className="text-xs text-body-mid italic py-2">
               No policy retrieved yet. Issue queries retrieve policies via FAISS
               semantic search.
             </p>
@@ -292,9 +290,9 @@ export default function ChatWindow({
         </div>
 
         {/* Live Audit Log Stream */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md flex-1">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center space-x-1.5">
-            <Activity className="h-4 w-4 text-purple-400" />
+        <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs flex-1">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-body mb-3 flex items-center space-x-1.5">
+            <Activity className="h-4 w-4 text-primary" />
             <span>Live Audit Trail</span>
           </h3>
           <div className="max-h-[300px] overflow-y-auto">

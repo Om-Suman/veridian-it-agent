@@ -101,9 +101,10 @@ class AgentOrchestrator:
 
         # 4. Classify Intent
         intent = self.classifier.classify(request.message)
+        engine_used = getattr(self.classifier, "last_engine", "Gemini 2.5 Flash")
         evt2 = self.audit_logger.log_event(
             action="INTENT_CLASSIFIED",
-            details=f"Intent classified as {intent.value}",
+            details=f"Intent classified as {intent.value} via {engine_used}",
             ticket_id=ticket_ref,
             actor="Agent"
         )

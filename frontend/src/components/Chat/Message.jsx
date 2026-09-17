@@ -7,7 +7,6 @@ import {
   AlertCircle,
   BookOpen,
   FileText,
-  Clock,
   ArrowRight,
 } from "lucide-react";
 
@@ -19,22 +18,22 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
     switch (decision) {
       case "RESOLVE":
         return (
-          <span className="inline-flex items-center space-x-1 bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs px-2.5 py-0.5 rounded-full font-semibold">
-            <CheckCircle2 className="h-3 w-3" />
+          <span className="inline-flex items-center space-x-1 bg-[#ebf6ed] border border-[#b8e2c0] text-[#1c6434] text-xs px-2.5 py-1 rounded-xl font-semibold">
+            <CheckCircle2 className="h-3.5 w-3.5" />
             <span>DECISION: RESOLVE</span>
           </span>
         );
       case "FOLLOW_UP":
         return (
-          <span className="inline-flex items-center space-x-1 bg-amber-950/80 border border-amber-500/40 text-amber-400 text-xs px-2.5 py-0.5 rounded-full font-semibold">
-            <AlertTriangle className="h-3 w-3" />
+          <span className="inline-flex items-center space-x-1 bg-[#fef8e7] border border-[#fae2a0] text-[#935f08] text-xs px-2.5 py-1 rounded-xl font-semibold">
+            <AlertTriangle className="h-3.5 w-3.5" />
             <span>DECISION: FOLLOW_UP</span>
           </span>
         );
       case "ESCALATE":
         return (
-          <span className="inline-flex items-center space-x-1 bg-rose-950/80 border border-rose-500/40 text-rose-400 text-xs px-2.5 py-0.5 rounded-full font-semibold">
-            <AlertCircle className="h-3 w-3" />
+          <span className="inline-flex items-center space-x-1 bg-[#fdf0ed] border border-[#f5c2b9] text-[#b92510] text-xs px-2.5 py-1 rounded-xl font-semibold">
+            <AlertCircle className="h-3.5 w-3.5" />
             <span>DECISION: ESCALATE</span>
           </span>
         );
@@ -48,20 +47,26 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
       className={`flex items-start space-x-3 my-4 ${isAgent ? "justify-start" : "justify-end"}`}
     >
       {isAgent && (
-        <div className="h-9 w-9 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 mt-1">
-          <Shield className="h-5 w-5" />
+        <div className="h-9 w-9 rounded-xl bg-canvas border border-hairline flex items-center justify-center text-primary shrink-0 mt-1 shadow-2xs">
+          <Shield className="h-4.5 w-4.5" />
         </div>
       )}
 
       <div
         className={`max-w-2xl rounded-xl p-4 text-sm ${
           isAgent
-            ? "bg-slate-800/90 border border-slate-700/80 text-slate-100 shadow-md"
-            : "bg-blue-600 text-white shadow-md"
+            ? "bg-canvas-soft border border-hairline text-ink shadow-2xs"
+            : "bg-ink text-[#fffefb] shadow-2xs"
         }`}
       >
         {/* Header with Sender Name & Time */}
-        <div className="flex items-center justify-between space-x-4 mb-2 pb-1.5 border-b border-white/10 text-xs opacity-80">
+        <div
+          className={`flex items-center justify-between space-x-4 mb-2 pb-1.5 border-b text-xs ${
+            isAgent
+              ? "border-hairline text-body"
+              : "border-[#3a3232] text-[#d5cdbf]"
+          }`}
+        >
           <span className="font-semibold flex items-center space-x-1.5">
             {isAgent ? (
               <span>Veridian Service Agent</span>
@@ -85,9 +90,9 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
             {getDecisionBadge(message.decision)}
 
             {message.assignedTeam && (
-              <span className="bg-slate-900/80 border border-slate-700 text-slate-300 text-xs px-2 py-0.5 rounded font-mono">
+              <span className="bg-canvas border border-hairline text-ink-soft text-xs px-2.5 py-1 rounded-xl font-mono">
                 Team:{" "}
-                <strong className="text-white">{message.assignedTeam}</strong>
+                <strong className="text-ink">{message.assignedTeam}</strong>
               </span>
             )}
 
@@ -96,7 +101,7 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
                 onClick={() =>
                   onSelectTicket && onSelectTicket(message.ticketId)
                 }
-                className="bg-blue-950/80 hover:bg-blue-900 border border-blue-600/40 text-blue-300 text-xs px-2 py-0.5 rounded font-mono flex items-center space-x-1 cursor-pointer transition-colors"
+                className="bg-canvas hover:bg-canvas-hover border border-hairline text-primary text-xs px-2.5 py-1 rounded-xl font-mono flex items-center space-x-1 cursor-pointer transition-colors"
               >
                 <span>
                   Ticket: <strong>{message.ticketId}</strong>
@@ -106,7 +111,7 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
             )}
 
             {message.ticketStatus && (
-              <span className="bg-slate-900/60 border border-slate-700 text-slate-400 text-xs px-2 py-0.5 rounded">
+              <span className="bg-canvas border border-hairline text-body text-xs px-2.5 py-1 rounded-xl">
                 Status: {message.ticketStatus}
               </span>
             )}
@@ -120,8 +125,8 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
 
         {/* Policy Sources Panel */}
         {isAgent && message.sources && message.sources.length > 0 && (
-          <div className="mt-4 pt-3 border-t border-slate-700/60">
-            <div className="flex items-center space-x-1.5 text-xs text-blue-400 font-semibold mb-2">
+          <div className="mt-4 pt-3 border-t border-hairline">
+            <div className="flex items-center space-x-1.5 text-xs text-primary font-semibold mb-2">
               <BookOpen className="h-3.5 w-3.5" />
               <span>Attributed Policy Sources:</span>
             </div>
@@ -130,13 +135,13 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
                 <button
                   key={idx}
                   onClick={() => onSelectSource && onSelectSource(source)}
-                  className="text-xs bg-slate-900 hover:bg-blue-950/60 border border-slate-700 hover:border-blue-500/50 text-slate-200 px-2.5 py-1 rounded-md flex items-center space-x-1.5 transition-colors cursor-pointer group"
+                  className="text-xs bg-canvas hover:bg-canvas-hover border border-hairline hover:border-primary text-ink px-3 py-1.5 rounded-xl flex items-center space-x-1.5 transition-colors cursor-pointer group shadow-2xs"
                 >
-                  <span className="font-semibold text-blue-400 group-hover:text-blue-300">
+                  <span className="font-semibold text-primary">
                     {source.id}
                   </span>
-                  <span className="text-slate-400">—</span>
-                  <span className="text-slate-300">{source.title}</span>
+                  <span className="text-body-mid">—</span>
+                  <span className="text-ink">{source.title}</span>
                 </button>
               ))}
             </div>
@@ -147,8 +152,8 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
         {isAgent &&
           message.historicalContext &&
           message.historicalContext.length > 0 && (
-            <div className="mt-3 pt-2.5 border-t border-slate-700/40">
-              <div className="flex items-center space-x-1.5 text-xs text-amber-400 font-semibold mb-1.5">
+            <div className="mt-3 pt-2.5 border-t border-hairline">
+              <div className="flex items-center space-x-1.5 text-xs text-[#935f08] font-semibold mb-1.5">
                 <FileText className="h-3.5 w-3.5" />
                 <span>Historical Context (Not Policy Precedent):</span>
               </div>
@@ -156,7 +161,7 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
                 {message.historicalContext.map((hist, idx) => (
                   <span
                     key={idx}
-                    className="text-xs bg-amber-950/40 border border-amber-500/30 text-amber-200/90 px-2 py-0.5 rounded"
+                    className="text-xs bg-[#fef8e7] border border-[#fae2a0] text-[#935f08] px-2.5 py-1 rounded-xl font-mono"
                   >
                     <strong>{hist.ticket_id}</strong>: {hist.summary}
                   </span>
@@ -167,8 +172,8 @@ export default function Message({ message, onSelectSource, onSelectTicket }) {
       </div>
 
       {!isAgent && (
-        <div className="h-9 w-9 rounded-lg bg-slate-700 flex items-center justify-center text-slate-200 shrink-0 mt-1">
-          <User className="h-5 w-5" />
+        <div className="h-9 w-9 rounded-xl bg-canvas-soft border border-hairline flex items-center justify-center text-ink shrink-0 mt-1 shadow-2xs">
+          <User className="h-4.5 w-4.5" />
         </div>
       )}
     </div>

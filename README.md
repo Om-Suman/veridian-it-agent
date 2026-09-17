@@ -35,6 +35,8 @@ Response + Source Attribution Badges
 React Frontend
 ```
 
+![Veridian Corp IT Agent Architecture](architecture.jpg)
+
 ### Critical Grounding Rules
 
 1. **The LLM Never Invents or Overrides Policy**: The LLM / NLU parser extracts structured intent and parameters. The **Deterministic Policy Engine** evaluates strict rules and makes the final business decision.

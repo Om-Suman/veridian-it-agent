@@ -19,19 +19,19 @@ export default function InputBox({
   };
 
   return (
-    <div className="bg-slate-900 border-t border-slate-800 p-4">
+    <div className="bg-canvas border-t border-hairline p-4">
       {/* Employee Selector Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs text-slate-400">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs text-body">
         <div className="flex items-center space-x-2">
-          <User className="h-4 w-4 text-blue-400" />
-          <span>Active Employee:</span>
+          <User className="h-4 w-4 text-primary" />
+          <span className="font-medium">Active Employee:</span>
           <select
             value={selectedEmployee?.email || ""}
             onChange={(e) => {
               const emp = employees.find((x) => x.email === e.target.value);
               if (emp) setSelectedEmployee(emp);
             }}
-            className="bg-slate-800 border border-slate-700 rounded px-2.5 py-1 text-slate-200 text-xs focus:outline-none focus:border-blue-500"
+            className="bg-canvas-soft border border-hairline rounded-xl px-3 py-1 text-ink text-xs focus:outline-none focus:border-primary cursor-pointer"
           >
             {employees.map((emp) => (
               <option key={emp.id} value={emp.email}>
@@ -45,7 +45,7 @@ export default function InputBox({
           <button
             onClick={onReset}
             type="button"
-            className="flex items-center space-x-1 text-slate-400 hover:text-slate-200 transition-colors"
+            className="flex items-center space-x-1 text-body hover:text-ink transition-colors cursor-pointer"
           >
             <RotateCcw className="h-3 w-3" />
             <span>Reset Chat</span>
@@ -61,12 +61,12 @@ export default function InputBox({
           onChange={(e) => setText(e.target.value)}
           placeholder="Describe your IT issue (e.g. 'My laptop won't turn on', 'Need guest Wi-Fi', 'Locked out')..."
           disabled={loading}
-          className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+          className="flex-1 bg-canvas-soft border border-hairline rounded-xl px-4 py-3 text-sm text-ink placeholder:text-body-mid focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={loading || !text.trim()}
-          className="bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 text-white font-medium px-5 py-3 rounded-lg text-sm flex items-center space-x-2 transition-colors shadow-lg shadow-blue-600/20"
+          className="bg-primary hover:bg-primary-hover disabled:opacity-50 disabled:hover:bg-primary text-[#fffefb] font-medium px-5 py-3 rounded-xl text-sm flex items-center space-x-2 transition-colors shadow-2xs cursor-pointer"
         >
           {loading ? (
             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

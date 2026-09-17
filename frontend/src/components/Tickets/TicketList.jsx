@@ -1,15 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {
-  Search,
-  Filter,
-  History,
-  CheckCircle2,
-  Clock,
-  AlertTriangle,
-  AlertCircle,
-  ExternalLink,
-  ChevronRight,
-} from "lucide-react";
+import { Search, Filter, History, ChevronRight } from "lucide-react";
 
 export default function TicketList({
   tickets = [],
@@ -46,20 +36,18 @@ export default function TicketList({
     switch (status) {
       case "RESOLVED":
       case "CLOSED":
-        return "bg-emerald-950/70 border-emerald-500/40 text-emerald-400";
+        return "bg-[#ebf6ed] border-[#b8e2c0] text-[#1c6434]";
       case "ESCALATED":
-        return "bg-rose-950/70 border-rose-500/40 text-rose-400 font-semibold";
+        return "bg-[#fdf0ed] border-[#f5c2b9] text-[#b92510] font-semibold";
       case "WAITING_FOR_EMPLOYEE":
-        return "bg-amber-950/70 border-amber-500/40 text-amber-400";
       case "WAITING_FOR_APPROVAL":
       case "WAITING_FOR_FINANCE":
-        return "bg-blue-950/70 border-blue-500/40 text-blue-400";
       case "WAITING_FOR_SECURITY":
-        return "bg-purple-950/70 border-purple-500/40 text-purple-400";
+        return "bg-[#fef8e7] border-[#fae2a0] text-[#935f08]";
       case "IN_PROGRESS":
-        return "bg-sky-950/70 border-sky-500/40 text-sky-400";
+        return "bg-canvas border-hairline text-ink font-medium";
       default:
-        return "bg-slate-800 border-slate-700 text-slate-300";
+        return "bg-canvas-soft border-hairline text-body";
     }
   };
 
@@ -68,25 +56,25 @@ export default function TicketList({
     switch (decision) {
       case "RESOLVE":
         return (
-          <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-500/30">
+          <span className="text-[11px] font-mono text-[#1c6434] bg-[#ebf6ed] px-2 py-0.5 rounded-lg border border-[#b8e2c0] font-semibold">
             RESOLVE
           </span>
         );
       case "FOLLOW_UP":
         return (
-          <span className="text-[11px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-500/30">
+          <span className="text-[11px] font-mono text-[#935f08] bg-[#fef8e7] px-2 py-0.5 rounded-lg border border-[#fae2a0] font-semibold">
             FOLLOW_UP
           </span>
         );
       case "ESCALATE":
         return (
-          <span className="text-[11px] font-mono text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded border border-rose-500/30">
+          <span className="text-[11px] font-mono text-[#b92510] bg-[#fdf0ed] px-2 py-0.5 rounded-lg border border-[#f5c2b9] font-semibold">
             ESCALATE
           </span>
         );
       default:
         return (
-          <span className="text-[11px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+          <span className="text-[11px] font-mono text-body bg-canvas-soft px-2 py-0.5 rounded-lg border border-hairline">
             {decision}
           </span>
         );
@@ -94,29 +82,29 @@ export default function TicketList({
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+    <div className="bg-canvas-soft border border-hairline rounded-xl overflow-hidden shadow-2xs">
       {/* Filters & Search Toolbar */}
-      <div className="p-4 border-b border-slate-800 bg-slate-850 flex flex-wrap items-center justify-between gap-3">
+      <div className="p-4 border-b border-hairline bg-canvas flex flex-wrap items-center justify-between gap-3">
         {/* Search */}
         <div className="relative flex-1 min-w-[220px]">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-3 h-4 w-4 text-body-mid" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Filter by ticket ID, employee, category..."
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full bg-canvas-soft border border-hairline rounded-xl pl-10 pr-3 py-2 text-xs text-ink placeholder:text-body-mid focus:outline-none focus:border-primary"
           />
         </div>
 
         {/* Status Dropdown */}
-        <div className="flex items-center space-x-2 text-xs text-slate-400">
-          <Filter className="h-3.5 w-3.5 text-slate-400" />
+        <div className="flex items-center space-x-2 text-xs text-body">
+          <Filter className="h-3.5 w-3.5 text-body-mid" />
           <span>Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500"
+            className="bg-canvas-soft border border-hairline rounded-xl px-3 py-2 text-xs text-ink focus:outline-none focus:border-primary cursor-pointer"
           >
             <option value="ALL">All Statuses</option>
             <option value="OPEN">OPEN</option>
@@ -134,10 +122,10 @@ export default function TicketList({
         {/* Historical Context Toggle */}
         <button
           onClick={() => setShowHistoricalOnly(!showHistoricalOnly)}
-          className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+          className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs font-medium border transition-colors cursor-pointer ${
             showHistoricalOnly
-              ? "bg-amber-950/60 border-amber-500/40 text-amber-300"
-              : "bg-slate-800 border-slate-700 text-slate-300 hover:text-white"
+              ? "bg-[#fef8e7] border-[#fae2a0] text-[#935f08]"
+              : "bg-canvas-soft border-hairline text-body hover:text-ink"
           }`}
         >
           <History className="h-3.5 w-3.5" />
@@ -147,26 +135,23 @@ export default function TicketList({
 
       {/* Ticket Table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs text-slate-300">
-          <thead className="bg-slate-800/80 text-slate-400 uppercase font-semibold text-[11px] border-b border-slate-700">
+        <table className="w-full text-left text-xs text-ink">
+          <thead className="bg-canvas-soft text-body-mid uppercase font-semibold text-[11px] border-b border-hairline tracking-wider">
             <tr>
-              <th className="px-4 py-3">Ticket ID</th>
-              <th className="px-4 py-3">Employee</th>
-              <th className="px-4 py-3">Category</th>
-              <th className="px-4 py-3">Summary</th>
-              <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3">Decision</th>
-              <th className="px-4 py-3">Team</th>
-              <th className="px-4 py-3 text-right">Action</th>
+              <th className="px-4 py-3.5">Ticket ID</th>
+              <th className="px-4 py-3.5">Employee</th>
+              <th className="px-4 py-3.5">Category</th>
+              <th className="px-4 py-3.5">Summary</th>
+              <th className="px-4 py-3.5">Status</th>
+              <th className="px-4 py-3.5">Decision</th>
+              <th className="px-4 py-3.5">Team</th>
+              <th className="px-4 py-3.5 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-hairline bg-canvas">
             {filteredTickets.length === 0 ? (
               <tr>
-                <td
-                  colSpan="8"
-                  className="px-4 py-8 text-center text-slate-500"
-                >
+                <td colSpan="8" className="px-4 py-8 text-center text-body-mid">
                   No tickets match the selected filters.
                 </td>
               </tr>
@@ -179,35 +164,35 @@ export default function TicketList({
                     onClick={() =>
                       onSelectTicket && onSelectTicket(ticket.ticket_id)
                     }
-                    className={`hover:bg-slate-800/60 cursor-pointer transition-colors ${
+                    className={`hover:bg-canvas-hover/60 cursor-pointer transition-colors ${
                       isSelected
-                        ? "bg-blue-950/40 border-l-4 border-l-blue-500"
+                        ? "bg-[#fef8e7]/50 border-l-4 border-l-primary"
                         : ""
                     }`}
                   >
-                    <td className="px-4 py-3 font-mono font-bold text-blue-400 whitespace-nowrap">
+                    <td className="px-4 py-3 font-mono font-bold text-primary whitespace-nowrap">
                       {ticket.ticket_id}
                       {ticket.historical_context && (
-                        <span className="ml-1.5 text-[9px] uppercase tracking-wider bg-amber-950 border border-amber-500/30 text-amber-400 px-1 py-0.2 rounded font-sans">
+                        <span className="ml-1.5 text-[9px] uppercase tracking-wider bg-[#fef8e7] border border-[#fae2a0] text-[#935f08] px-1.5 py-0.5 rounded-md font-sans font-semibold">
                           Historical
                         </span>
                       )}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap font-medium text-white">
+                    <td className="px-4 py-3 whitespace-nowrap font-medium text-ink">
                       {ticket.employee_name}
                     </td>
-                    <td className="px-4 py-3 text-slate-300 whitespace-nowrap">
+                    <td className="px-4 py-3 text-body whitespace-nowrap">
                       {ticket.category}
                     </td>
                     <td
-                      className="px-4 py-3 max-w-xs truncate text-slate-300"
+                      className="px-4 py-3 max-w-xs truncate text-body"
                       title={ticket.summary}
                     >
                       {ticket.summary}
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
                       <span
-                        className={`px-2 py-0.5 rounded text-[11px] font-mono border ${getStatusBadge(ticket.status)}`}
+                        className={`px-2.5 py-1 rounded-lg text-[11px] font-mono border ${getStatusBadge(ticket.status)}`}
                       >
                         {ticket.status}
                       </span>
@@ -215,11 +200,11 @@ export default function TicketList({
                     <td className="px-4 py-3 whitespace-nowrap">
                       {getDecisionBadge(ticket.decision)}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap font-mono text-slate-400">
+                    <td className="px-4 py-3 whitespace-nowrap font-mono text-body">
                       {ticket.assigned_team || "—"}
                     </td>
                     <td className="px-4 py-3 text-right whitespace-nowrap">
-                      <button className="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700 transition-colors">
+                      <button className="text-body-mid hover:text-ink p-1 rounded-lg hover:bg-canvas-soft transition-colors">
                         <ChevronRight className="h-4 w-4" />
                       </button>
                     </td>

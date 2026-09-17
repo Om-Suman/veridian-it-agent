@@ -74,21 +74,21 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-canvas text-ink flex flex-col font-sans selection:bg-primary selection:text-white">
       {/* Top Navigation */}
       <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {error && (
-          <div className="mb-6 bg-rose-950/80 border border-rose-500/40 text-rose-200 p-4 rounded-xl flex items-center justify-between shadow-lg">
+          <div className="mb-6 bg-[#fdf0ed] border border-[#f5c2b9] text-[#b92510] p-4 rounded-xl flex items-center justify-between shadow-xs">
             <div className="flex items-center space-x-3 text-sm">
-              <span className="font-bold">Backend Connection Notice:</span>
+              <span className="font-semibold">Backend Connection Notice:</span>
               <span>{error}</span>
             </div>
             <button
               onClick={loadData}
-              className="px-3 py-1 bg-rose-800 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors"
+              className="px-3.5 py-1.5 bg-[#b92510] hover:bg-[#a01f0c] text-white rounded-xl text-xs font-semibold cursor-pointer transition-colors"
             >
               Retry
             </button>

@@ -13,6 +13,7 @@ class RequestClassifier:
     """
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = (api_key or os.getenv("GEMINI_API_KEY") or "").strip().strip('"').strip("'")
+        self.last_engine = "Gemini 2.5 Flash" if self.api_key else "Deterministic Engine"
 
     def classify(self, text: str) -> IntentType:
         # If Gemini API key is configured, attempt LLM classification
@@ -20,14 +21,21 @@ class RequestClassifier:
             try:
                 llm_intent = self._classify_with_llm(text)
                 if llm_intent:
+                    self.last_engine = "Gemini 2.5 Flash"
+                    snippet = (text[:35] + '...') if len(text) > 35 else text
+                    print(f"[NLU: Gemini LLM] Classified \"{snippet}\" -> {llm_intent.value}")
                     return llm_intent
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"[NLU: Fallback] Gemini call failed ({e}), switching to offline engine.")
 
-        return self._classify_deterministic(text)
+        self.last_engine = "Deterministic Engine"
+        intent = self._classify_deterministic(text)
+        snippet = (text[:35] + '...') if len(text) > 35 else text
+        print(f"[NLU: Deterministic Engine] Classified \"{snippet}\" -> {intent.value}")
+        return intent
 
     def _classify_with_llm(self, text: str) -> Optional[IntentType]:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={self.api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={self.api_key}"
         prompt = f"""You are an internal IT helpdesk classifier for Veridian Corp.
 Classify the employee's request into exactly ONE of the following intent categories:
 - PASSWORD_RESET (forgot password, account locked, failed login attempts)

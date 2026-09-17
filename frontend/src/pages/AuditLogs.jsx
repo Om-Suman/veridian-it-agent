@@ -1,12 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {
-  Activity,
-  Search,
-  Filter,
-  RefreshCw,
-  Ticket,
-  Shield,
-} from "lucide-react";
+import { Activity, Search, Filter, RefreshCw } from "lucide-react";
 import AuditTimeline from "../components/Audit/AuditTimeline";
 
 export default function AuditLogs({ auditLogs = [], onRefresh, loading }) {
@@ -41,11 +34,11 @@ export default function AuditLogs({ auditLogs = [], onRefresh, loading }) {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight flex items-center space-x-2">
-            <Activity className="h-6 w-6 text-purple-400" />
+          <h1 className="text-xl font-semibold text-ink tracking-tight flex items-center space-x-2">
+            <Activity className="h-5 w-5 text-primary" />
             <span>Agent Audit Trail & Decision Logs</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-body mt-1">
             Factual chronological record of all agent interactions, policy
             retrieval, decisions, and ticket operations.
           </p>
@@ -54,35 +47,35 @@ export default function AuditLogs({ auditLogs = [], onRefresh, loading }) {
         <button
           onClick={onRefresh}
           disabled={loading}
-          className="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-3.5 py-1.5 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer"
+          className="bg-canvas-soft hover:bg-canvas border border-hairline text-ink px-3.5 py-2 rounded-xl text-xs font-medium flex items-center space-x-2 transition-colors cursor-pointer shadow-2xs"
         >
           <RefreshCw
-            className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`}
+            className={`h-3.5 w-3.5 ${loading ? "animate-spin text-primary" : ""}`}
           />
           <span>Refresh Audit Stream</span>
         </button>
       </div>
 
       {/* Filter Toolbar */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-md flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-canvas-soft border border-hairline rounded-xl p-4 shadow-2xs flex flex-wrap items-center justify-between gap-3">
         <div className="relative flex-1 min-w-[220px]">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-3 h-4 w-4 text-body-mid" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search details, actors, ticket IDs..."
-            className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+            className="w-full bg-canvas border border-hairline rounded-xl pl-10 pr-3 py-2 text-xs text-ink placeholder:text-body-mid focus:outline-none focus:border-primary"
           />
         </div>
 
-        <div className="flex items-center space-x-2 text-xs text-slate-400">
-          <Filter className="h-3.5 w-3.5" />
+        <div className="flex items-center space-x-2 text-xs text-body">
+          <Filter className="h-3.5 w-3.5 text-body-mid" />
           <span>Action Type:</span>
           <select
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500"
+            className="bg-canvas border border-hairline rounded-xl px-3 py-2 text-xs text-ink focus:outline-none focus:border-primary cursor-pointer"
           >
             <option value="ALL">All Actions ({auditLogs.length})</option>
             {uniqueActions.map((act) => (
@@ -95,7 +88,7 @@ export default function AuditLogs({ auditLogs = [], onRefresh, loading }) {
       </div>
 
       {/* Audit Timeline Feed */}
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
+      <div className="bg-canvas-soft border border-hairline rounded-xl p-6 shadow-2xs">
         <AuditTimeline logs={filteredLogs} />
       </div>
     </div>
