@@ -123,12 +123,7 @@ export default function App() {
           />
         )}
 
-        {activeTab === "knowledge" && (
-          <KnowledgeBase
-            policies={policies}
-            onSelectSource={setSelectedSource}
-          />
-        )}
+        {activeTab === "knowledge" && <KnowledgeBase policies={policies} />}
 
         {activeTab === "audit" && (
           <AuditLogs

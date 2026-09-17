@@ -362,12 +362,6 @@ export default function KnowledgeBase({ policies = [], onSelectSource }) {
                             key={policy.source_id}
                             onClick={() => {
                               setSelectedPolicyId(policy.source_id);
-                              if (onSelectSource) {
-                                onSelectSource({
-                                  id: policy.source_id,
-                                  ...policy,
-                                });
-                              }
                             }}
                             className={`flex items-center space-x-2 px-2.5 py-1.5 rounded-lg text-xs cursor-pointer transition-colors ${
                               isSelected
