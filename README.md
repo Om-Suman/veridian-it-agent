@@ -7,6 +7,13 @@ The system processes employee IT support requests through a rigorous, grounded a
 
 ---
 
+## Live Deployment Links
+
+- **Frontend Portal**: [https://fantastic-illumination-production-265d.up.railway.app/](https://fantastic-illumination-production-265d.up.railway.app/)
+- **Backend API & Swagger Docs**: [https://veridian-it-agent-production.up.railway.app/docs](https://veridian-it-agent-production.up.railway.app/docs)
+
+---
+
 ## Key Design Principles & Architecture
 
 ```text
